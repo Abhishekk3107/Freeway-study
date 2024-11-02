@@ -53,7 +53,7 @@ export default function Navbar({darkMode , toggleDarkMode}) {
               </Link>
             </div>
             <div className="hidden md:block">
-              <div className="flex items-baseline space-x-4">
+              <div className="flex items-baseline space-x-4 poppins-regular">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/resources">Resources</NavLink>
                 <NavLink to="/about">About Us</NavLink>
