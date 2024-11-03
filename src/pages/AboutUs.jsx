@@ -1,6 +1,7 @@
 import React from 'react'
-import { Navbar } from '../components'
+import { Footer, Navbar } from '../components'
 import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 function AboutUs() {
 
@@ -27,15 +28,17 @@ function AboutUs() {
     }, [darkMode])
 
     const toggleDarkMode = () => {
-      setDarkMode(!darkMode)
-  }
-  return (
-    <div className='dark:bg-slate-800 min-w-screen min-h-screen'>
+        setDarkMode(!darkMode)
+    }
+    return (
+        <div className='dark:bg-slate-800 min-w-screen min-h-screen'>
             <div className='max-w-[1480px] mx-auto poppins-regular'>
-      <Navbar  darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-    </div>
-    </div>
-  )
+                <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+                <div className='w-full h-screen'></div>
+                <Footer/>
+            </div>
+        </div>
+    )
 }
 
 export default AboutUs

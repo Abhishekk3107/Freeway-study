@@ -2,6 +2,7 @@ import React from 'react';
 import darkBg from '../assets/hero-bg-dark.svg';
 import lightBg from '../assets/hero-bg-light.svg';
 import Learning from '../assets/Learning.svg';
+import { Link } from 'react-router-dom';
 
 function HeroSection({ isDarkMode }) {
   return (
@@ -24,9 +25,9 @@ function HeroSection({ isDarkMode }) {
               One stop for all your academic solutions. Be it books, notes, question papers, exam solutions, we got you covered!
             </p>
             <div className="mt-6">
-              <button className="gradient-button px-8 py-3 rounded-lg font-bold transition-transform transform hover:scale-105">
+              <Link to='/resources' className="gradient-button px-8 py-3 rounded-lg font-bold transition-transform transform hover:scale-105">
                 Let's Study {'->'}
-              </button>
+              </Link>
             </div>
           </div>
           <div className='md:w-[50%] w-full'>

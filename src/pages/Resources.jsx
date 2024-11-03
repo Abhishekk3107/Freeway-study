@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar } from '../components'
+import { Footer, Navbar } from '../components'
 import { useState, useEffect } from 'react';
 
 
@@ -34,6 +34,8 @@ function Resources() {
     <div className='dark:bg-slate-800 min-w-screen min-h-screen'>
             <div className='max-w-[1480px] mx-auto poppins-regular'>
       <Navbar  darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+      <div className='w-full h-screen'></div>
+      <Footer/>
     </div>
     </div>
   )

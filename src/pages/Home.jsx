@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Features, HeroSection, Navbar, ResourcesForSection, NumberCrunchSection } from '../components'
+import { Features, HeroSection, Navbar, ResourcesForSection, NumberCrunchSection ,Footer } from '../components'
 
 
 function Home() {
@@ -39,6 +39,7 @@ function Home() {
                 <ResourcesForSection isDarkMode={darkMode} />
                 <NumberCrunchSection isDarkMode={darkMode} />
                 <Features isDarkMode={darkMode} />
+                <Footer/>
             </div>
         </div>
     )

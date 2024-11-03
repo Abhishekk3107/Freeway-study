@@ -15,13 +15,10 @@ function NavLink({ to, children, mobile = false }) {
   )
 }
 
-export default function Navbar({darkMode , toggleDarkMode}) {
+export default function Navbar({ darkMode, toggleDarkMode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isFixed, setIsFixed] = useState(false)
 
-
-
-  // Scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsFixed(window.scrollY > 100) // Fix navbar after scrolling 100px
@@ -40,8 +37,7 @@ export default function Navbar({darkMode , toggleDarkMode}) {
 
   return (
     <>
-      <nav className={`bg-white dark:bg-gray-800 shadow-md absolute top-0 left-0
-            w-full z-50`}>
+      <nav className={`bg-white dark:bg-gray-800 shadow-md absolute top-0 left-0 w-full z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -64,7 +60,11 @@ export default function Navbar({darkMode , toggleDarkMode}) {
                 onClick={toggleDarkMode}
                 aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {darkMode ? (
+                  <Sun className="h-5 w-5 text-yellow-400" /> // Sun icon with yellow color
+                ) : (
+                  <Moon className="h-5 w-5 text-slate-800" /> // Moon icon with slate color
+                )}
               </button>
               <div className="ml-4 mt-1.5 md:hidden">
                 <button
@@ -87,9 +87,7 @@ export default function Navbar({darkMode , toggleDarkMode}) {
           </div>
         )}
       </nav>
-      <nav className={`bg-white dark:bg-gray-800 shadow-md transition-all duration-500 ease-in-out 
-            ${isFixed ? 'fixed top-0 left-0 translate-y-0' : 'absolute -translate-y-full'} 
-            w-full z-50`}>
+      <nav className={`bg-white dark:bg-gray-800 shadow-md transition-all duration-500 ease-in-out ${isFixed ? 'fixed top-0 left-0 translate-y-0' : 'absolute -translate-y-full'} w-full z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -103,7 +101,6 @@ export default function Navbar({darkMode , toggleDarkMode}) {
             <div className="hidden md:block">
               <div className="flex items-baseline space-x-4">
                 <NavLink to="/">Home</NavLink>
-                {/* <NavLink to="/courses">Courses</NavLink> */}
                 <NavLink to="/resources">Resources</NavLink>
                 <NavLink to="/about">About Us</NavLink>
               </div>
@@ -113,7 +110,11 @@ export default function Navbar({darkMode , toggleDarkMode}) {
                 onClick={toggleDarkMode}
                 aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               >
-                {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {darkMode ? (
+                  <Sun className="h-5 w-5 text-yellow-400" /> // Sun icon with yellow color
+                ) : (
+                  <Moon className="h-5 w-5 text-slate-800" /> // Moon icon with slate color
+                )}
               </button>
               <div className="ml-4 mt-1.5 md:hidden">
                 <button
@@ -130,14 +131,12 @@ export default function Navbar({darkMode , toggleDarkMode}) {
           <div className="md:hidden flex justify-center">
             <div className="flex flex-row px-2 pt-2 pb-3 space-x-4 sm:px-3">
               <NavLink to="/" mobile>Home</NavLink>
-              {/* <NavLink to="/courses" mobile>Courses</NavLink> */}
               <NavLink to="/resources" mobile>Resources</NavLink>
               <NavLink to="/about" mobile>About Us</NavLink>
             </div>
           </div>
         )}
       </nav>
-
     </>
   )
 }
