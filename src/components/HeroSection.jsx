@@ -1,6 +1,6 @@
 import React from 'react';
-import darkBg from '../assets/hero-bg-dark.svg';
-import lightBg from '../assets/hero-bg-light.svg';
+import darkBg from '../assets/hero-bg-2-dark.png';
+import lightBg from '../assets/hero-bg-light.jpg';
 import Learning from '../assets/Learning.svg';
 import { Link } from 'react-router-dom';
 
