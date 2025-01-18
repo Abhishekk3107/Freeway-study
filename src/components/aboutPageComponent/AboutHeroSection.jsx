@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 const aboutImages = [
   aboutHero1,
   aboutHero2,
-  aboutHero3 // Add paths to multiple images
+  aboutHero3 
 ];
 
 function AboutHeroSection() {

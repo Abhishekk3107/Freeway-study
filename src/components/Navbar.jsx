@@ -84,6 +84,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
               <NavLink to="/" mobile>Home</NavLink>
               <NavLink to="/resources" mobile>Resources</NavLink>
               <NavLink to="/about" mobile>About Us</NavLink>
+              <NavLink to="/admin">admin</NavLink> 
             </div>
           </div>
         )}

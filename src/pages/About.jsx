@@ -1,13 +1,10 @@
 import { Footer, Navbar, AboutHeroSection, DeveloperProfile } from "../components";
 import { useState, useEffect } from "react";
-import { BookOpen, Search, PenTool, Users, Laptop } from 'lucide-react';
-import profile1 from "../assets/profile1.jpg";
-import profile2 from "../assets/profile2.jpg";
-import profile3 from "../assets/profile3.jpg";
-import profile4 from "../assets/profile4.jpg";
 import ourvision from "../assets/ourvision.svg";
+import {  teamMembers } from "../constant";
+import { BookOpen, Search, PenTool, Users, Laptop } from 'lucide-react';
 
-const offers = [
+export const offers = [
     {
         icon: <BookOpen className="h-6 w-6" />,
         title: "Free Study Materials",
@@ -35,33 +32,6 @@ const offers = [
     }
 ];
 
-const teamMembers = [
-    {
-        role: "Founder & CEO as Backend Developer",
-        name: "Tarush Ruhela",
-        image: profile4,
-        linkedin: "https://www.linkedin.com/in/tarushruhela/",
-    },
-    {
-        role: "Database Manager",
-        name: "Bhavik Sharma",
-        image: profile1,
-        linkedin: "https://www.linkedin.com/in/team-member-1",
-    },
-    {
-        role: "UI/UX Designer",
-        name: "Shubham Sharma",
-        image: profile2,
-        linkedin: "https://www.linkedin.com/in/team-member-2",
-    },
-    {
-        role: "Frontend Developer",
-        name: "Abhishek Kumar",
-        image: profile3,
-        linkedin: "https://www.linkedin.com/in/abhishekkumar3107/",
-    },
-    
-];
 
 export default function About() {
     const [darkMode, setDarkMode] = useState(false);
