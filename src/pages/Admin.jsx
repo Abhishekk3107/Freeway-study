@@ -1,8 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from "react";
+import { AdminAuthContext } from '../context/AdminAuthConext'
+import { useNavigate } from "react-router-dom";
 import admin from "../assets/admin_login.png";
 import logo from '../assets/storytelling.png';
 
 function Admin() {
+  
+  const { handleLogin, adminUser } = useContext(AdminAuthContext);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const nav = useNavigate()
+  useEffect(() => {
+    if (adminUser)
+      nav("/admin/dashboard")
+  }, [adminUser])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogin(formData);
+  };
+
 
   return (
     <div className={`min-w-screen bg-gradient-to-b from-black via-blue-950 to-blue-900 min-h-screen $`}>
@@ -20,7 +46,7 @@ function Admin() {
               }`}
           >
             <h2 className={`text-2xl text-white font-medium mb-6`}>Admin Login</h2>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="email" className="block text-sm mb-2 text-left text-white">
                   Email Address
@@ -28,6 +54,10 @@ function Admin() {
                 <input
                   type="email"
                   id="email"
+                  required
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded outline-none border bg-slate-800 border-gray-600 text-white"
                   placeholder="Enter your email"
                 />
@@ -39,6 +69,10 @@ function Admin() {
                 <input
                   type="password"
                   id="password"
+                  required
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   className="w-full px-4 py-2 rounded outline-none border bg-slate-800 border-gray-600 text-white"
                   placeholder="Enter your password"
                 />

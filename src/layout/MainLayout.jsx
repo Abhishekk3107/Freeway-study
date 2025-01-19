@@ -1,12 +1,12 @@
-import React from 'react'
-import { StudyMaterialsSection,Navbar} from '../components'
+import { Outlet } from "react-router-dom";
+import { Navbar, Footer } from "../components";
+import { useState, useEffect } from 'react';
 
+const MainLayout = () => {
 
+    const [darkMode, setDarkMode] = useState(false)
 
-function Resources() {
-const [darkMode, setDarkMode] = React.useState(false)
-
-    React.useEffect(() => {
+    useEffect(() => {
         const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
         const savedTheme = localStorage.getItem('theme')
 
@@ -16,7 +16,7 @@ const [darkMode, setDarkMode] = React.useState(false)
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (darkMode) {
             document.documentElement.classList.add('dark')
             localStorage.setItem('theme', 'dark')
@@ -29,15 +29,16 @@ const [darkMode, setDarkMode] = React.useState(false)
     const toggleDarkMode = () => {
         setDarkMode(!darkMode)
     }
-  return (
-    <>
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    return (
+        <>
+            <div className='dark:bg-slate-800 min-w-screen min-h-screen'>
+                <div className='max-w-[1480px] mx-auto poppins-regular'>
+                    <Outlet />
+                    <Footer />
+                </div>
+            </div >
+        </>
+    );
+};
 
-      <div className='w-full h-screen'>
-        <StudyMaterialsSection />
-      </div>
-    </>
-  )
-}
-
-export default Resources
+export default MainLayout;

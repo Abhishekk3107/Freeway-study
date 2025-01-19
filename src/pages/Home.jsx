@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Features, HeroSection, Navbar, ResourcesForSection, NumberCrunchSection ,Footer } from '../components'
+import {Navbar, Features, HeroSection, ResourcesForSection, NumberCrunchSection } from '../components'
 
 
 function Home() {
@@ -32,16 +32,13 @@ function Home() {
     }
 
     return (
-        <div className='dark:bg-slate-800 min-w-screen min-h-screen'>
-            <div className='max-w-[1480px] mx-auto poppins-regular'>
-                <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-                <HeroSection isDarkMode={darkMode} />
-                <ResourcesForSection isDarkMode={darkMode} />
-                <NumberCrunchSection isDarkMode={darkMode} />
-                <Features isDarkMode={darkMode} />
-                <Footer/>
-            </div>
-        </div>
+        <>
+            <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <HeroSection isDarkMode={darkMode} />
+            <ResourcesForSection isDarkMode={darkMode} />
+            <NumberCrunchSection isDarkMode={darkMode} />
+            <Features isDarkMode={darkMode} />
+        </>
     )
 }
 
