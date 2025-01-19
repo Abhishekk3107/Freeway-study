@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AdminAuthContext } from '../context/AdminAuthConext'
+import { AdminAuthContext } from '../context/AdminAuthContext'
 import { useNavigate } from "react-router-dom";
 import admin from "../assets/admin_login.png";
 import logo from '../assets/storytelling.png';

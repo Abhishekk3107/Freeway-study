@@ -8,7 +8,7 @@ export default function CategoryRow({ categories, selectedSubject }) {
         <button
           key={category.type}
           variant="outline"
-          className="w-full dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700"
+          className="w-full dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
           onClick={() => window.open(category.pdf, '_blank')}
         >
           {category.type}

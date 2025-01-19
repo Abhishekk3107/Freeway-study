@@ -20,13 +20,13 @@ export default function StudyMaterialsSection() {
   }
 
   return (
-    <section className="p-8 min-h-screen transition-colors duration-300 dark:bg-blue-900 bg-gray-100">
+    <section className="p-8 min-h-screen transition-colors duration-300 dark:bg-gray-900 bg-gray-100">
       <div className="max-w-4xl mx-auto mt-28">
 
         <div className="mb-8">
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="w-full justify-between dark:bg-blue-800 dark:text-blue-200 dark:hover:bg-blue-700"
+            className="w-full justify-between dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
           >
             {selectedSubject || 'Select Subject'}
             <span className="ml-2">▼</span>
