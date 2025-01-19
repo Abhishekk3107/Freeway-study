@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import {Navbar, Features, HeroSection, ResourcesForSection, NumberCrunchSection } from '../components'
+import {Navbar, Features, HeroSection, ResourcesForSection, NumberCrunchSection,UserReviewsSection } from '../components'
+import { reviews } from "../constant";
 
 
 function Home() {
@@ -29,7 +30,13 @@ function Home() {
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode)
+
+        
+
     }
+
+
+
 
     return (
         <>
@@ -38,6 +45,7 @@ function Home() {
             <ResourcesForSection isDarkMode={darkMode} />
             <NumberCrunchSection isDarkMode={darkMode} />
             <Features isDarkMode={darkMode} />
+            <UserReviewsSection reviews={reviews}/>
         </>
     )
 }

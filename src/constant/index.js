@@ -1,4 +1,5 @@
 
 import { teamMembers } from "./teamMembers";
+import { reviews } from "./Reviews"
 
-export { teamMembers }
+export { teamMembers,reviews }

@@ -1,7 +1,7 @@
 import './App.css'
 import {  Routes, Route , Navigate  } from 'react-router-dom';
 import { Home, Resources, AboutUs, Policy, Admin } from './pages';
-import { AdminAuthContext } from './context/AdminAuthConext';
+import { AdminAuthContext } from './context/AdminAuthContext';
 import MainLayout from './layout/MainLayout';
 import { useContext } from 'react';
 

@@ -1,4 +1,4 @@
-import { Footer, Navbar, AboutHeroSection, DeveloperProfile } from "../components";
+import { Footer, Navbar, AboutHeroSection, DeveloperProfile,Calltoaction } from "../components";
 import { useState, useEffect } from "react";
 import ourvision from "../assets/ourvision.svg";
 import { teamMembers } from "../constant";
@@ -131,17 +131,8 @@ export default function About() {
                 </div>
             </section>
 
-            {/* Call to Action */}
-            <section className="text-center bg-[#F5F2EB] dark:bg-gray-900 py-16 px-4 rounded-xl mb-8">
-                <h2 className="text-3xl font-semibold dark:text-white text-black mb-4">Join Our Learning Community</h2>
-                <p className="text-lg text-gray-700 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                    Ready to embark on your learning journey? Explore our resources, engage with fellow learners,
-                    and help us improve by providing your valuable feedback.
-                </p>
-                <div className="space-x-4">
-                    <button className="simple-button" size="lg">Explore Resources</button>
-                    <button className="simple-button" size="lg" variant="outline">Provide Feedback</button>
-                </div>
+           <section>
+            <Calltoaction/>
             </section>
         </div>
         </>

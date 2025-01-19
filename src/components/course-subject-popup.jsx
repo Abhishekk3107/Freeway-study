@@ -5,7 +5,7 @@ const CustomDialog = ({ open, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white dark:bg-blue-800 rounded-lg shadow-lg p-6 max-w-md w-full relative">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-md w-full relative">
         {children}
         <button
           onClick={onClose}
@@ -21,8 +21,8 @@ const CustomDialog = ({ open, onClose, children }) => {
 const CustomButton = ({ onClick, variant = 'outline', className, children }) => {
   const baseStyles = 'px-4 py-2 rounded-md font-medium transition-all duration-200'
   const variants = {
-    default: 'bg-blue-500 text-white hover:bg-blue-600',
-    outline: 'border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white',
+    default: 'bg-gray-500 text-white hover:bg-gray-600',
+    outline: 'border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white',
   }
 
   return (
@@ -54,27 +54,27 @@ export default function CourseSubjectPopup({ isOpen, onClose, onSubjectSelect })
     <CustomDialog open={isOpen} onClose={onClose}>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <h3 className="font-bold dark:text-blue-200">Courses</h3>
+          <h3 className="font-bold dark:text-gray-200">Courses</h3>
           {courses.map((course) => (
             <CustomButton
               key={course.id}
               onClick={() => setSelectedCourse(course.id)}
               variant={selectedCourse === course.id ? 'default' : 'outline'}
-              className="w-full dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-600"
+              className="w-full dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             >
               {course.name}
             </CustomButton>
           ))}
         </div>
         <div className="space-y-2">
-          <h3 className="font-bold dark:text-blue-200">Subjects</h3>
+          <h3 className="font-bold dark:text-gray-200">Subjects</h3>
           {selectedCourse &&
             subjects[selectedCourse].map((subject) => (
               <CustomButton
                 key={subject}
                 onClick={() => onSubjectSelect(subject)}
                 variant="outline"
-                className="w-full dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-600"
+                className="w-full dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
               >
                 {subject}
               </CustomButton>
@@ -85,7 +85,7 @@ export default function CourseSubjectPopup({ isOpen, onClose, onSubjectSelect })
         <CustomButton
           onClick={onClose}
           variant="outline"
-          className="dark:bg-blue-700 dark:text-blue-200"
+          className="dark:bg-gray-700 dark:text-gray-200"
         >
           Close
         </CustomButton>
