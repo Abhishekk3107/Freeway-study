@@ -1,6 +1,19 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const UserReviewsSection = ({ reviews }) => {
+const UserReviewsSection = () => {
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/feedback`)
+        setReviews(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetch();
+  }, []);
   return (
     <section className="mb-16 px-4 bg-[#F5F2EB] dark:bg-gray-900 p-10">
       <h2 className="text-3xl dark:text-white text-black font-semibold mb-8">
@@ -9,8 +22,8 @@ const UserReviewsSection = ({ reviews }) => {
       <p className="text-lg text-gray-800 dark:text-gray-400 mb-8">
         Here's what our users have to say about their experiences with us. Their voices inspire us to do better every day.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-        {reviews.map((review, index) => (
+      <div className={`grid  ${reviews.length > 0 ?"grid-cols-1 md:grid-cols-2 lg:grid-cols-4": "grid-cols-1" } gap-8 mt-12`}>
+        {reviews.length > 0 ?reviews.map((review, index) => (
           <div
             key={index}
             className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 text-center"
@@ -30,7 +43,7 @@ const UserReviewsSection = ({ reviews }) => {
               "{review.review}"
             </p>
           </div>
-        ))}
+        )): <p className="text-center text-gray-800 dark:text-gray-400 ">No feedback added!!</p>}
       </div>
     </section>
   );
