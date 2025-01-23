@@ -1,5 +1,5 @@
 import React from 'react'
-import { StudyMaterialsSection,Navbar} from '../components'
+import { StudyMaterialsSection,Navbar, } from '../components'
 
 
 
@@ -36,6 +36,8 @@ const [darkMode, setDarkMode] = React.useState(false)
       <div className='w-full h-screen'>
         <StudyMaterialsSection />
       </div>
+      
+
     </>
   )
 }
