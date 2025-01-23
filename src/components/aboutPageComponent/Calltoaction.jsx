@@ -117,95 +117,119 @@ const CallToAction = () => {
                     </button>
                 </div>
             </section>
-
-            {/* Feedback Popup */}
             {showFeedbackPopup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
-                        <h3 className="text-xl font-semibold dark:text-white text-black mb-4">
-                            Provide Your Feedback
-                        </h3>
-                        <form onSubmit={handleFeedbackSubmit} className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
-                                    Email Address
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
-                                    City
-                                </label>
-                                <input
-                                    type="text"
-                                    name="city"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
-                                    Review
-                                </label>
-                                <textarea
-                                    name="review"
-                                    value={formData.review}
-                                    onChange={handleChange}
-                                    className="form-textarea w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    rows="3"
-                                    required
-                                ></textarea>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
-                                    Upload Photo (Max 200KB)
-                                </label>
-                                <input
-                                    type="file"
-                                    name="photo"
-                                    accept="image/*"
-                                    className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    onChange={handleFileChange}
-                                />
-                            </div>
-                            <div className="flex justify-end space-x-2">
-                                <button
-                                    type="button"
-                                    className="simple-button"
-                                    onClick={() => setShowFeedbackPopup(false)}
-                                >
-                                    Cancel
-                                </button>
-                                <button type="submit" className="simple-button">
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg w-[90%] max-w-sm sm:max-w-md">
+      <h3 className="text-lg sm:text-xl font-semibold dark:text-white text-black mb-4">
+        Provide Your Feedback
+      </h3>
+      <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    if (formData.review.length < 50 || formData.review.length > 1000) {
+      alert("Review must be between 50 and 1000 characters.");
+      return;
+    }
+    handleFeedbackSubmit();
+    alert(
+      "Your review will be shown on the review section only if accepted as appropriate by our team after monitoring, we will notify you on your given email once your feedback is accepted"
+    );
+    setShowFeedbackPopup(false); // Close the feedback form after confirmation
+  }}
+  className="space-y-4"
+>
+
+        <div>
+          <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-500 dark:text-white"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
+            Email Address
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-500 dark:text-white"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
+            City
+          </label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            className="form-input w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-500 dark:text-white"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
+            Review
+          </label>
+          <textarea
+            name="review"
+            value={formData.review}
+            onChange={(e) => {
+              if (e.target.value.length <= 1000) {
+                handleChange(e);
+              }
+            }}
+            className="form-textarea w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none dark:bg-gray-500 dark:text-white"
+            rows="3"
+            required
+          ></textarea>
+          <small className="block text-sm text-gray-600 dark:text-gray-400 mt-1">
+            {formData.review.length}/1000 characters
+          </small>
+        </div>
+        <div>
+          <label className="block text-sm font-medium dark:text-gray-300 text-gray-700">
+            Upload Photo (Max 200KB)
+          </label>
+          <input
+            type="file"
+            name="photo"
+            accept="image/*"
+            className="form-input w-full border border-gray-300 dark:text-white dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="flex justify-end space-x-2">
+          <button
+            type="button"
+            className=" py-1 px-4 text-sm rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition simple-button"
+            onClick={() => setShowFeedbackPopup(false)}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className=" py-1 px-4 text-sm rounded-lg transition simple-button"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
         </>
     );
 };
