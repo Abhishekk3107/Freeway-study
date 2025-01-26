@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import useFeedback from '../../hooks/useFeedback';
 
 const imageKitUrl = "https://upload.imagekit.io/api/v1/files/upload";
 const authEndpoint = `${import.meta.env.VITE_API_BACKEND_URL}/image`;
@@ -10,6 +11,7 @@ const CallToAction = () => {
     const navigate = useNavigate();
     const [image, setImage] = useState(null);
     const [showFeedbackPopup, setShowFeedbackPopup] = useState(false);
+    const {addFeedback} = useFeedback();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -62,8 +64,7 @@ const CallToAction = () => {
         }
     };
 
-    const handleFeedbackSubmit = async (e) => {
-        e.preventDefault();
+    const handleFeedbackSubmit = async () => {
         try {
             const uploadedUserImage = fileData ? await uploadToImageKit(fileData) : null;
 
@@ -71,17 +72,11 @@ const CallToAction = () => {
                 ...formData,
                 photo: uploadedUserImage,
             };
-            console.log(feedbackFormData)
-            const response = await axios.post(`${import.meta.env.VITE_API_BACKEND_URL}/api/feedback`, feedbackFormData);
-
-            if (response.status === 201) {
-                console.log('Feedback submitted successfully');
-                setShowFeedbackPopup(false);
-                setFormData({ name: '', email: '', city: '', review: '' });
-                setFileData(null);
-            } else {
-                console.error('Failed to submit feedback');
-            }
+            console.log(feedbackFormData);
+            addFeedback(feedbackFormData);
+            setShowFeedbackPopup(false);
+            setFormData({ name: '', email: '', city: '', review: '' });
+            setFileData(null);
         } catch (error) {
             console.error('Error submitting feedback:', error);
         }
