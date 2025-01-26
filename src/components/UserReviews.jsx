@@ -1,21 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import useFeedback from "../hooks/useFeedback";
 
 const UserReviewsSection = () => {
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/feedback`);
-        console.log(res.data); // Debug: log the response to verify structure
-        setReviews(Array.isArray(res.data) ? res.data : []);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetch();
-  }, []);
+  const { loading ,approvedFeedback } = useFeedback();
 
   return (
     <section className="mb-16 px-4 bg-[#F5F2EB] dark:bg-gray-900 p-10">
@@ -27,11 +15,11 @@ const UserReviewsSection = () => {
       </p>
       <div
         className={`grid ${
-          reviews.length > 0 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1"
-        } gap-8 mt-12`}
+          approvedFeedback.length > 0 ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1"
+        } gap-8 mt-12 grid-cols-1`}
       >
-        {reviews.length > 0 ? (
-          reviews.map((review, index) => (
+        {!loading ? approvedFeedback.length > 0 ? (
+          approvedFeedback.map((review, index) => (
             <div
               key={index}
               className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 text-center"
@@ -48,11 +36,15 @@ const UserReviewsSection = () => {
               <p className="mt-4 text-gray-800 dark:text-gray-300">"{review.review}"</p>
             </div>
           ))
+        ) :(
+          <div className="w-full text-center text-lg text-gray-400">
+            <p>No feedback available at the moment.</p>
+            <p>Be the first to leave feedback or check back later!</p>
+          </div>
         ) : (
-          <p className="text-center text-gray-800 dark:text-gray-400">
-            No feedback added!!
-          </p>
-        )}
+          <div className="w-full flex justify-center items-center text-gray-400">
+            <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+          </div>)}
       </div>
     </section>
   );

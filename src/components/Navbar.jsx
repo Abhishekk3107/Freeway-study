@@ -37,7 +37,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
 
   return (
     <>
-      <nav className={`bg-white dark:bg-gray-800 shadow-md absolute top-0 left-0 w-full z-50`}>
+      <nav className={`bg-white dark:bg-gray-800 shadow-md absolute top-0 left-0 w-full z-50 overflow-hidden`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -53,7 +53,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/resources">Resources</NavLink>
                 <NavLink to="/about">About Us</NavLink>
-                <NavLink to="/admin/dashboard">admin</NavLink> 
+                <NavLink to="/admin/dashboard">admin</NavLink>
               </div>
             </div>
             <div className="flex items-center">
@@ -84,7 +84,7 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
               <NavLink to="/" mobile>Home</NavLink>
               <NavLink to="/resources" mobile>Resources</NavLink>
               <NavLink to="/about" mobile>About Us</NavLink>
-              <NavLink to="/admin/dashboard">admin</NavLink> 
+              <NavLink to="/admin/dashboard">admin</NavLink>
             </div>
           </div>
         )}

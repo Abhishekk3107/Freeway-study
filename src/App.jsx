@@ -4,6 +4,7 @@ import { Home, Resources, AboutUs, Policy, Admin } from './pages';
 import { AdminAuthContext } from './context/AdminAuthContext';
 import MainLayout from './layout/MainLayout';
 import { useContext } from 'react';
+import Main from './AdminPanel/Main';
 
 
 function App() {
@@ -20,7 +21,11 @@ function App() {
           </Route>
           <Route
             path="/admin/dashboard"
-            element={adminUser ? <>admin dashboard</>: <Navigate to="/admin/login" />}
+            element={adminUser ? <Main/>: <Navigate to="/admin/login" />}
+          />
+          <Route
+            path="/admin/profile"
+            element={adminUser ? <>admin profile</>: <Navigate to="/admin/login" />}
           />
           <Route
             path="/admin/login"
