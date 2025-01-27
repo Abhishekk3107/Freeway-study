@@ -76,3 +76,12 @@ background-clip: text;
   background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(114,7,152,0.8) 0%, rgba(0,212,255,1) 100%);
   
 }
+
+.scrollbar-hidden {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}

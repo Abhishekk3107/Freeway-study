@@ -20,7 +20,7 @@ function Feedbacks() {
           {allFeedback.map((feedback) => (
             <div
               key={feedback._id}
-              className='w-full rounded-md bg-slate-900 text-gray-400 flex flex-col justify-between'
+              className='w-full rounded-md bg-slate-300 text-gray-400 flex flex-col justify-between'
               onMouseEnter={() => setHoveredFeedback(feedback._id)}
               onMouseLeave={() => setHoveredFeedback(null)}
             >
