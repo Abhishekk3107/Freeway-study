@@ -33,7 +33,7 @@ const [darkMode, setDarkMode] = React.useState(false)
     <>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <div className='w-full h-screen'>
+      <div className='w-full min-h-screen'>
         <StudyMaterialsSection />
       </div>
       

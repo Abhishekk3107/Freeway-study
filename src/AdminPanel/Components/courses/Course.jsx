@@ -1,67 +1,51 @@
-import {useState , useEffect} from 'react'
+import { useState, useEffect } from "react";
+import { MdDelete } from "react-icons/md";
+import { FiMoreVertical } from "react-icons/fi";
+import useCourse from "../../../hooks/useCourse";
 
-function Course({setActiveComponent}) {
-    const [ currentPage, setCurrentPage ] = useState(); 
-    // const { news, pagination, loading, deletenews } = useStudentNews();
-    const [news , setNews] = useState();
-    const [pagination , setPAgination] = useState();
-    const [loading , setLoading] = useState(false);
-    const [deletenews , setDeletenews] = useState();
-    const [selectedItems, setSelectedItems] = useState([]);
-    const [selectAll, setSelectAll] = useState(false);
-    
-    const itemsPerPage = 8;
-    const totalPages = pagination ? pagination.totalPages : 0;
+function Course({ setActiveComponent , setCourseData}) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { courses, pagination, loading, fetchCourses, deleteCourse, updateCourse } = useCourse();
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [actionMenu, setActionMenu] = useState(null); // To track which menu is open
 
-    const handleSelectAll = () => {
-        if (selectAll) {
-          // Deselect all items on the current page
-          const startIndex = (currentPage - 1) * itemsPerPage;
-          const endIndex = Math.min(startIndex + itemsPerPage, news.length);
-          setSelectedItems((prev) =>
-            prev.filter(
-              (index) => index < startIndex || index >= endIndex // Keep only items not on the current page
-            )
-          );
-        } else {
-          // Select all items on the current page
-          const startIndex = (currentPage - 1) * itemsPerPage;
-          const endIndex = Math.min(startIndex + itemsPerPage, news.length);
-          const currentPageItems = Array.from(
-            { length: endIndex - startIndex },
-            (_, i) => startIndex + i
-          );
-      
-          setSelectedItems((prev) => [...prev, ...currentPageItems]);
-        }
-      
-        setSelectAll(!selectAll);
-      };
+  const itemsPerPage = 8; // Assuming 8 items per page
+  const totalPages = pagination ? pagination.totalPages : 0;
 
-      
+  useEffect(() => {
+    fetchCourses(currentPage, itemsPerPage); // Fetch courses whenever the current page changes
+  }, [currentPage]);
 
-    const handleSelectItem = (index) => {
-        const globalIndex = (currentPage - 1) * itemsPerPage + index;
-        setSelectedItems((prev) =>
-          prev.includes(globalIndex)
-            ? prev.filter((item) => item !== globalIndex)
-            : [...prev, globalIndex]
-        );
-      };
-    
-   
-    const handleDeleteSelected = () => {
-        selectedItems.forEach((index) => {
-          const globalIndex = index - (currentPage - 1) * itemsPerPage ;
-          const newsId = news[globalIndex]?.id;
-          if (newsId) {
-            deletenews(newsId);  // Deleting each selected news item
-          }
-        });
-        setSelectedItems([]); // Clear selected items after deletion
-      };
+  const handleSelectAll = () => {
+    const currentPageItems = courses.map((_, index) => index); // Select all items on the current page
+    if (selectAll) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems(currentPageItems);
+    }
+    setSelectAll(!selectAll);
+  };
 
-  if (loading) return <div className='top-52 right-28 absolute'>Loading...</div>;
+  const handleSelectItem = (index) => {
+    setSelectedItems((prev) =>
+      prev.includes(index) ? prev.filter((item) => item !== index) : [...prev, index]
+    );
+  };
+
+  const handleDeleteSelected = () => {
+    selectedItems.forEach((index) => {
+      const courseId = courses[index]?.id;
+      if (courseId) deleteCourse(courseId);
+    });
+    setSelectedItems([]);
+    fetchCourses(currentPage, itemsPerPage); // Refresh the course list
+  };
+
+  if (loading) return ( <div className="w-full flex justify-center items-center text-gray-400">
+  <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+</div>);
+
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
       {/* Header Section */}
@@ -69,77 +53,96 @@ function Course({setActiveComponent}) {
         <div className="flex space-x-3 items-center">
           <h2 className="font-bold text-lg">Course</h2>
           <span className="bg-purple-200 px-2 text-xs rounded-full">
-            {pagination ? pagination.totalNews : 0} courses
+            {pagination ? pagination.totalItems : 0} courses
           </span>
         </div>
         <div className="flex justify-end flex-1 items-center space-x-4">
-          {selectedItems.length >= 2 && <MdDelete size={26} className="cursor-pointer" 
-              onClick={handleDeleteSelected} />}
-          <div className="flex max-lg:flex-col gap-2">
-            <button
-              onClick={() => setActiveComponent("Add Studentnews")}
-              className="bg-[#4B0082] text-nowrap font-semibold border shadow-md text-white py-2 px-4 rounded-md mr-2"
-            >
-              Create
-            </button>
-          </div>
+          {selectedItems.length >= 2 && (
+            <MdDelete size={26} className="cursor-pointer" onClick={handleDeleteSelected} />
+          )}
+          <button
+            onClick={() => setActiveComponent("Add Course")}
+            className="bg-[#4B0082] text-nowrap font-semibold border shadow-md text-white py-2 px-4 rounded-md"
+          >
+            Create
+          </button>
         </div>
       </div>
 
-      {/* News Table */}
+      {/* Courses Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
-            <tr className="text-left border-b bg-gray-100 border-gray-200 h-16">
-              <th className="p-2 px-4 font-medium text-sm text-gray-200">
+            <tr className=" border-b bg-gray-100 border-gray-200 text-center h-16">
+              <th className="p-2 px-4 font-medium text-sm text-gray-500">
                 <input
                   type="checkbox"
-                  className="checked:bg-purple-500 checked:border-purple-500 size-4 bg-col"
+                  className="checked:bg-purple-500 checked:border-purple-500"
                   checked={selectAll}
                   onChange={handleSelectAll}
                 />
               </th>
-              <th className="py-3 px-4 text-left font-medium text-sm text-gray-500">Title</th>
-              <th className="py-3 px-4 text-left font-medium text-sm text-gray-500">Description</th>
-              <th className="py-3 px-4 text-left font-medium text-sm text-gray-500">Category</th>
-              <th className="py-3 px-4 text-left font-medium text-sm text-gray-500">Actions</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">Name</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">Duration</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">Syllabus</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">Action</th>
             </tr>
           </thead>
           <tbody>
-            {/* {news.length > 0 ? (
-              news.map((item, index) => (
+            {courses && courses.length > 0 ? (
+              courses.map((item, index) => (
                 <tr key={index} className="border-b border-gray-200 h-16">
-                  <td className="p-2 px-4 font-medium text-sm text-gray-600">
+                  <td className="p-2 px-4">
                     <input
                       type="checkbox"
-                      className="checked:bg-purple-500 checked:border-purple-500 size-4 bg-col"
-                      checked={selectedItems.includes((currentPage - 1) * itemsPerPage + index)}
+                      className="checked:bg-purple-500 checked:border-purple-500"
+                      checked={selectedItems.includes(index)}
                       onChange={() => handleSelectItem(index)}
                     />
                   </td>
-                  <td className="p-2 font-medium text-sm text-gray-600 max-w-52 whitespace-nowrap overflow-hidden text-ellipsis">
-                    {item.title}
-                  </td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.description}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.category}</td>
-                  <td className="p-2 flex font-medium text-center w-full text-sm justify-around h-16 items-center text-gray-600 cursor-pointer">
-                    <RiDeleteBin6Line onClick={() => deletenews(item.id)} />
-                    <FiEdit2
-                      onClick={() => {
-                        setActiveComponent("Update Studentnews");
-                        setStudentData(item);
-                      }}
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.name}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.duration}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.syllabus}</td>
+                  <td className="p-2 relative">
+                    <FiMoreVertical
+                      className="cursor-pointer"
+                      onClick={() =>
+                        setActionMenu((prev) => (prev === index ? null : index))
+                      }
                     />
+                    {actionMenu === index && (
+                      <div className="absolute right-0 top-10 bg-white shadow-lg border rounded-md w-32">
+                        <button
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            setCourseData(item);
+                            setActiveComponent("Update Course");
+                            setActionMenu(null);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
+                          onClick={() => {
+                            deleteCourse(item._id);
+                            setActionMenu(null);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
                 <td colSpan={5} className="text-center py-4 text-gray-500">
-                  No news available
+                  No courses available
                 </td>
               </tr>
-            )} */}
+            )}
           </tbody>
         </table>
       </div>
@@ -158,9 +161,7 @@ function Course({setActiveComponent}) {
             <button
               key={page}
               className={`py-2 px-4 rounded-md shadow-md border ${
-                currentPage === page + 1
-                  ? "bg-purple-700 text-white"
-                  : "bg-white text-black"
+                currentPage === page + 1 ? "bg-purple-700 text-white" : "bg-white text-black"
               }`}
               onClick={() => setCurrentPage(page + 1)}
             >
@@ -177,8 +178,7 @@ function Course({setActiveComponent}) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-
-export default Course
+export default Course;

@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import CourseSubjectPopup from './course-subject-popup';
+import React, { useState } from "react";
+import CourseSubjectPopup from "./course-subject-popup";
+import useCourse from "../hooks/useCourse";
+import CourseSyllabus from "./resourcePageComponents/CourseSyllabus";
 
 const studyMaterials = [
-  { type: 'PYQ', pdf: '#' },
-  { type: 'Notes', pdf: '#' },
-  { type: 'Books', pdf: '#' },
-  { type: 'Videos', pdf: '#' },
+  { type: "PYQ", pdf: "#" },
+  { type: "Notes", pdf: "#" },
+  { type: "Books", pdf: "#" },
+  { type: "Videos", pdf: "#" },
 ];
 
-const dummySyllabus = [
-  { course: 'Course BCA', description: 'Expore CCSU / BCA syllabus and study material.' },
-  { course: 'Course BBA', description: 'Expore CCSU / BBA syllabus and study material.' },
-];
 
 export default function StudyMaterialsSection() {
+  const {courses , loading} = useCourse();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState("");
 
   const handleSubjectSelect = (flow) => {
     setSelectedSubject(flow);
@@ -23,7 +22,7 @@ export default function StudyMaterialsSection() {
   };
 
   const handleReselect = () => {
-    setSelectedSubject('');
+    setSelectedSubject("");
     setIsPopupOpen(true);
   };
 
@@ -36,8 +35,8 @@ export default function StudyMaterialsSection() {
             className="px-4 py-2 text-lg font-medium rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 shadow-sm transition-all w-full sm:w-auto"
           >
             {selectedSubject
-              ? 'Change Course, Semester, and Subject'
-              : 'Select Course, Semester, and Subject'}
+              ? "Change Course, Semester, and Subject"
+              : "Select Course, Semester, and Subject"}
           </button>
         </div>
 
@@ -47,23 +46,8 @@ export default function StudyMaterialsSection() {
               Available Courses
             </h2>
             <div className="space-y-4">
-              {dummySyllabus.map((course, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all"
-                >
-                  <h3 className="text-base font-medium dark:text-gray-200 text-gray-800">
-                    {course.course}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    {course.description}
-                  </p>
-                  <div className="flex justify-center mt-4">
-                    <button className="simple-button px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600">
-                      Explore
-                    </button>
-                  </div>
-                </div>
+              {courses.map((course, index) => (
+                <CourseSyllabus key={index} index={index} course={course}/>
               ))}
             </div>
           </div>

@@ -1,8 +1,9 @@
 import React , {useState , useEffect} from 'react'
-import { Course ,  Semester , Subject , Unit } from '../Components'
+import { Course ,  Semester , Subject , Unit , AddCourse , UpdateCourse } from '../Components'
 
 function Resources() {
   const [activeComponent, setActiveComponent] = useState("Course");
+  const [courseData , setCourseData] = useState({});
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -10,14 +11,15 @@ function Resources() {
         return (
           <Course
             setActiveComponent={setActiveComponent}
+            setCourseData={setCourseData}
           />
         );
-      // case "Add Test":
-      //   return <AddTest setActiveComponent={setActiveComponent} />;
-      // case "Update Test":
-      //   return (
-      //     <UpdateTest data={data} setActiveComponent={setActiveComponent} />
-      //   );
+      case "Add Course":
+        return <AddCourse setActiveComponent={setActiveComponent} />;
+      case "Update Course":
+        return (
+          <UpdateCourse courseData={courseData} setActiveComponent={setActiveComponent} />
+        );
       case "Semester":
         return <Semester  setActiveComponent={setActiveComponent} />;
       // case "Add Education":
