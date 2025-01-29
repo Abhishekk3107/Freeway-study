@@ -46,9 +46,17 @@ export default function StudyMaterialsSection() {
               Available Courses
             </h2>
             <div className="space-y-4">
-              {courses.map((course, index) => (
-                <CourseSyllabus key={index} index={index} course={course}/>
-              ))}
+              {
+  loading ? (
+    <div className="w-full flex justify-center items-center text-gray-400">
+      <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+    </div>
+  ) : (
+    courses.map((course, index) => (
+      <CourseSyllabus key={index} index={index} course={course} />
+    ))
+  )
+              }
             </div>
           </div>
         )}
