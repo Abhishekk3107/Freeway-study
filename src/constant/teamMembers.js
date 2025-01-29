@@ -5,7 +5,7 @@ import profile4 from "../assets/profile4.jpg";
 
 export const teamMembers = [
     {
-        role: "Founder & CEO as Backend Developer",
+        role: "Founder & CEO as MERN Developer",
         name: "Tarush Ruhela",
         image: profile4,
         linkedin: "https://www.linkedin.com/in/tarushruhela/",

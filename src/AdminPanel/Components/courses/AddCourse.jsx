@@ -18,8 +18,8 @@ function AddCourse({ setActiveComponent }) {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file?.size > 1000000) {
-      alert("File size must be under 1000KB");
+    if (file?.size > 10000000) {
+      alert("File size must be under 10MB");
       e.target.value = "";
     } else if (file?.type === "application/pdf") {
       setFileData(file);

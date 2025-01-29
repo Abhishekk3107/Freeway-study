@@ -65,7 +65,7 @@ const CallToAction = () => {
           Ready to embark on your learning journey? Explore our resources, engage with fellow learners,
           and help us improve by providing your valuable feedback.
         </p>
-        <div className="space-x-4">
+        <div className="md:space-x-4 space-y-2 space-x-1">
           <button
             className="simple-button hover:scale-105 transition-transform"
             size="lg"

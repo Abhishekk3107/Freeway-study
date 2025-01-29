@@ -42,7 +42,7 @@ function CourseSyllabus({course , index}) {
             {selectedCourseIndex === index && (
                 <div className="mt-4">
                     <iframe
-                        src={course.syllabus}
+                        src={`https://docs.google.com/viewer?url=${course.syllabus}&embedded=true`}
                         title="Syllabus Preview"
                         className="w-full h-[90vh] border rounded-md"
                     ></iframe>
