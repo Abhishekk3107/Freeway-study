@@ -44,7 +44,7 @@ function UpdateCourse({ courseData, setActiveComponent }) {
         if (newSyllabusFile) {
             try {
                 const uploadedFile = await uploadToImageKit(newSyllabusFile);
-                formData.syllabus = uploadedFile.url; // Update syllabus with uploaded file URL
+                formData.syllabus = uploadedFile; // Update syllabus with uploaded file URL
             } catch (error) {
                 console.error("Error uploading file:", error);
                 return; // Exit if file upload fails
