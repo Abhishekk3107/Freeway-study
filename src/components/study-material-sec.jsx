@@ -12,7 +12,7 @@ const studyMaterials = [
 
 
 export default function StudyMaterialsSection() {
-  const {courses , loading} = useCourse();
+  const {courses , loading} = useCourse(100);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
 
