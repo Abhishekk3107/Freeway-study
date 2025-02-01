@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CustomDialog = ({ open, onClose, children }) => {
   if (!open) return null;
@@ -218,6 +219,7 @@ export default function CourseSubjectPopup({ isOpen, onClose, onSubjectSelect })
   const [step, setStep] = useState(1); // Step: 1 = Course, 2 = Semester, 3 = Subject
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedSemester, setSelectedSemester] = useState(null);
+  const navigate = useNavigate();
 
   const handleCourseSelect = (courseId) => {
     setSelectedCourse(courseId);
@@ -232,6 +234,7 @@ export default function CourseSubjectPopup({ isOpen, onClose, onSubjectSelect })
   const handleSubjectSelect = (subject) => {
     const courseName = courses.find((course) => course.id === selectedCourse)?.name;
     const flow = `${courseName} / ${selectedSemester} / ${subject}`;
+    navigate(`/resources/${courseName}/${selectedSemester}/${subject}`); 
     onSubjectSelect(flow); // Pass the full flow to the parent
     setStep(1); // Reset after selection
     setSelectedCourse(null);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CourseSubjectPopup from "./course-subject-popup";
-import useCourse from "../hooks/useCourse";
-import CourseSyllabus from "./resourcePageComponents/CourseSyllabus";
+import useCourse from "../../hooks/useCourse";
+import CourseSyllabus from "./CourseSyllabus";
 
 const studyMaterials = [
   { type: "PYQ", pdf: "#" },
@@ -11,8 +11,8 @@ const studyMaterials = [
 ];
 
 
-export default function StudyMaterialsSection() {
-  const {courses , loading} = useCourse(100);
+export default function Resources() {
+  const { courses, loading } = useCourse(100);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
 
@@ -47,15 +47,15 @@ export default function StudyMaterialsSection() {
             </h2>
             <div className="space-y-4">
               {
-  loading ? (
-    <div className="w-full flex justify-center items-center text-gray-400">
-      <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
-    </div>
-  ) : (
-    courses.map((course, index) => (
-      <CourseSyllabus key={index} index={index} course={course} />
-    ))
-  )
+                loading ? (
+                  <div className="w-full flex justify-center items-center text-gray-400">
+                    <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+                  </div>
+                ) : (
+                  courses.map((course, index) => (
+                    <CourseSyllabus key={index} index={index} course={course} />
+                  ))
+                )
               }
             </div>
           </div>

@@ -53,7 +53,6 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/resources">Resources</NavLink>
                 <NavLink to="/about">About Us</NavLink>
-                <NavLink to="/admin/dashboard">admin</NavLink>
               </div>
             </div>
             <div className="flex items-center">
@@ -84,7 +83,6 @@ export default function Navbar({ darkMode, toggleDarkMode }) {
               <NavLink to="/" mobile>Home</NavLink>
               <NavLink to="/resources" mobile>Resources</NavLink>
               <NavLink to="/about" mobile>About Us</NavLink>
-              <NavLink to="/admin/dashboard">admin</NavLink>
             </div>
           </div>
         )}

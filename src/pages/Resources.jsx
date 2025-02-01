@@ -1,5 +1,5 @@
 import React from 'react'
-import { StudyMaterialsSection,Navbar, } from '../components'
+import { Resources as StudyMaterialsSection,Navbar, } from '../components'
 
 
 
