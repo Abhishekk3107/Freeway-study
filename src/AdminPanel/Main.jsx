@@ -1,6 +1,6 @@
 import { Navbar , Sidebar} from "./Components";
 import React, { useState, useEffect } from 'react';
-import { Dashboard, Resources, LatestNews, Notification, Feedbacks } from './Sections'
+import { Dashboard, Resources, LatestNews, Notification, Feedbacks,Profile } from './Sections'
 
 function Main() {
     const [activeComponent, setActiveComponent] = useState("Dashboard");
@@ -25,6 +25,9 @@ function Main() {
 
             case "Notification":
                 return <Notification />;
+            case "Profile":
+                return <Profile setActiveComponent={setActiveComponent} />;
+    
 
             default:
                 return <></>;
