@@ -10,9 +10,8 @@ const studyMaterials = [
   { type: "Videos", pdf: "#" },
 ];
 
-
 export default function Resources() {
-  const { courses, loading } = useCourse(100);
+  const { courses = [], loading } = useCourse(100); // Default to empty array if courses is undefined
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
 
@@ -46,17 +45,19 @@ export default function Resources() {
               Available Courses
             </h2>
             <div className="space-y-4">
-              {
-                loading ? (
-                  <div className="w-full flex justify-center items-center text-gray-400">
-                    <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
-                  </div>
-                ) : (
+              {loading ? (
+                <div className="w-full flex justify-center items-center text-gray-400">
+                  <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+                </div>
+              ) : (
+                courses.length > 0 ? (
                   courses.map((course, index) => (
                     <CourseSyllabus key={index} index={index} course={course} />
                   ))
+                ) : (
+                  <p className="text-center text-gray-400">No courses available.</p>
                 )
-              }
+              )}
             </div>
           </div>
         )}
@@ -68,8 +69,11 @@ export default function Resources() {
             </h3>
             <div className="space-y-4">
               {studyMaterials.map((material, index) => (
-                <div
+                <a
                   key={index}
+                  href={material.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800 hover:shadow-md transition-all"
                 >
                   <h4 className="text-base font-medium text-gray-800 dark:text-gray-200">
@@ -78,9 +82,15 @@ export default function Resources() {
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     Click to explore
                   </p>
-                </div>
+                </a>
               ))}
             </div>
+            <button
+              onClick={handleReselect}
+              className="mt-4 text-blue-500 dark:text-blue-400 hover:underline"
+            >
+              Reselect Subject
+            </button>
           </div>
         )}
 

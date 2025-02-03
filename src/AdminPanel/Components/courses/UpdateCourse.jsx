@@ -3,7 +3,7 @@ import useCourse from "../../../hooks/useCourse";
 import { uploadToImageKit } from "../../../utils/uploadToImageKit";
 
 function UpdateCourse({ courseData, setActiveComponent }) {
-    const { updateCourse , error } = useCourse();
+    const { updateCourse , error } = useCourse(8);
     const [formData, setFormData] = useState({
         name: courseData?.name || "",
         duration: courseData?.duration || "",

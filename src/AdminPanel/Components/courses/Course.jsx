@@ -5,7 +5,7 @@ import useCourse from "../../../hooks/useCourse";
 
 function Course({ setActiveComponent , setCourseData}) {
   const [currentPage, setCurrentPage] = useState(1);
-  const { courses, pagination, loading, fetchCourses, deleteCourse, updateCourse } = useCourse();
+  const { courses, pagination, loading, fetchCourses, deleteCourse, updateCourse } = useCourse(8);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [actionMenu, setActionMenu] = useState(null); // To track which menu is open
