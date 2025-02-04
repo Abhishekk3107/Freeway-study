@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useSemester = () => {
+const useSemester = (limit , page) => {
     const [semesters, setSemesters] = useState([]); // Stores the list of semesters
     const [pagination, setPagination] = useState({}); // Stores pagination details
     const [loading, setLoading] = useState(false); // Loading state
@@ -12,7 +12,7 @@ const useSemester = () => {
         setLoading(true);
         setError(null); // Reset error state
         try {
-            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/semesters`);
+            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/semesters?page=${page||1}&limit=${limit||8}`);
             if (res.status === 200) {
                 setSemesters(res.data.semesters);
                 setPagination(res.data.pagination);
@@ -82,7 +82,7 @@ const useSemester = () => {
     // Fetch semesters on initial render
     useEffect(() => {
         fetchSemesters();
-    }, []);
+    }, [limit , page]);
 
     // Return states and CRUD methods
     return {
