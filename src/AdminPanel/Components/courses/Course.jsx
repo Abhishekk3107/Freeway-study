@@ -3,18 +3,18 @@ import { MdDelete } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import useCourse from "../../../hooks/useCourse";
 
-function Course({ setActiveComponent , setCourseData}) {
+function Course({ setActiveComponent, setCourseData }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const { courses, pagination, loading, fetchCourses, deleteCourse, updateCourse } = useCourse(8);
+  const { courses, pagination, loading, fetchCourses, deleteCourse } = useCourse(8, currentPage);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
-  const [actionMenu, setActionMenu] = useState(null); // To track which menu is open
+  const [actionMenu, setActionMenu] = useState(null);
 
-  const itemsPerPage = 8; // Assuming 8 items per page
+  const itemsPerPage = 8;
   const totalPages = pagination ? pagination.totalPages : 0;
 
   useEffect(() => {
-    fetchCourses(currentPage, itemsPerPage); // Fetch courses whenever the current page changes
+    fetchCourses(itemsPerPage, currentPage); // Fetch courses whenever the current page changes
   }, [currentPage]);
 
   const handleSelectAll = () => {
@@ -42,9 +42,9 @@ function Course({ setActiveComponent , setCourseData}) {
     fetchCourses(currentPage, itemsPerPage); // Refresh the course list
   };
 
-  if (loading) return ( <div className="w-full flex justify-center items-center text-gray-400">
-  <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
-</div>);
+  if (loading) return (<div className="w-full flex justify-center items-center text-gray-400">
+    <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+  </div>);
 
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
@@ -53,7 +53,7 @@ function Course({ setActiveComponent , setCourseData}) {
         <div className="flex space-x-3 items-center">
           <h2 className="font-bold text-lg">Course</h2>
           <span className="bg-purple-200 px-2 text-xs rounded-full">
-            {pagination ? pagination.totalItems : 0} courses
+            {pagination ? pagination.totalCourses : 0} courses
           </span>
         </div>
         <div className="flex justify-end flex-1 items-center space-x-4">
@@ -160,9 +160,8 @@ function Course({ setActiveComponent , setCourseData}) {
           {[...Array(totalPages).keys()].map((page) => (
             <button
               key={page}
-              className={`py-2 px-4 rounded-md shadow-md border ${
-                currentPage === page + 1 ? "bg-purple-700 text-white" : "bg-white text-black"
-              }`}
+              className={`py-2 px-4 rounded-md shadow-md border ${currentPage === page + 1 ? "bg-purple-700 text-white" : "bg-white text-black"
+                }`}
               onClick={() => setCurrentPage(page + 1)}
             >
               {page + 1}

@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useCourse = ({limit}) => {
-    const [courses, setCourses] = useState([]); // Stores the list of courses
-    const [pagination, setPagination] = useState({}); // Stores pagination details
-    const [loading, setLoading] = useState(false); // Loading state
-    const [error, setError] = useState(null); // Error state
+const useCourse = (limit , page) => {
+    const [courses, setCourses] = useState([]); 
+    const [pagination, setPagination] = useState({}); 
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(null); 
 
-    // Fetch courses from the backend
     const fetchCourses = async () => {
         setLoading(true);
-        setError(null); // Reset the error state
+        setError(null); 
         try {
-            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/courses?limit=${limit}`);
+            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/courses?page=${page||1}&limit=${limit||8}`);
             if (res.status === 200) {
                 setCourses(res.data.courses);
                 setPagination(res.data.pagination);
@@ -82,7 +81,7 @@ const useCourse = ({limit}) => {
     // Fetch courses on initial render
     useEffect(() => {
         fetchCourses();
-    }, [limit]);
+    }, [limit , page]);
 
     // Return states and CRUD methods
     return {

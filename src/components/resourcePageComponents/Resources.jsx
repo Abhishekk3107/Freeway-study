@@ -11,7 +11,8 @@ const studyMaterials = [
 ];
 
 export default function Resources() {
-  const { courses = [], loading } = useCourse(100); // Default to empty array if courses is undefined
+  const limit = 100;
+  const { courses = [], loading } = useCourse(limit); 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
 

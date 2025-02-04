@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useSubject = () => {
+const useSubject = (limit , page) => {
     const [subjects, setSubjects] = useState([]); // Stores the list of subjects
     const [pagination, setPagination] = useState({}); // Stores pagination details
     const [loading, setLoading] = useState(false); // Loading state
@@ -12,7 +12,7 @@ const useSubject = () => {
         setLoading(true);
         setError(null); // Reset error state
         try {
-            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/subjects`);
+            const res = await axios.get(`${import.meta.env.VITE_API_BACKEND_URL}/api/subjects?page=${page||1}&limit=${limit||8}`);
             if (res.status === 200) {
                 setSubjects(res.data.subjects);
                 setPagination(res.data.pagination);

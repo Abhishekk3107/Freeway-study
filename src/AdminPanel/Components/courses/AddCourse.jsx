@@ -3,13 +3,13 @@ import useCourse from "../../../hooks/useCourse";
 import { uploadToImageKit } from "../../../utils/uploadToImageKit";
 
 function AddCourse({ setActiveComponent }) {
-  const { addCourse, loading, error } = useCourse(8);
+  const { addCourse, loading, error } = useCourse();
   const [formData, setFormData] = useState({
     name: "",
     duration: "",
   });
-  const [fileData, setFileData] = useState(null); // Store the selected file
-  const [pdfPreview, setPdfPreview] = useState(""); // PDF preview URL
+  const [fileData, setFileData] = useState(null); 
+  const [pdfPreview, setPdfPreview] = useState(""); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
