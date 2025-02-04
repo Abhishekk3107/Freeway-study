@@ -48,7 +48,7 @@ function Main() {
                 {/* Main Content */}
                 <div className="flex-1 bg-gray-200 overflow-y-auto">
                     <Navbar />
-                    <div className="p-8 bg-gray-200 min-h-screen">
+                    <div className="pt-8 bg-gray-200 min-h-screen">
                         {renderComponent()}
                     </div>
                 </div>

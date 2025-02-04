@@ -11,7 +11,6 @@ const Navbar = () => {
     const [imageModalOpen, setImageModalOpen] = useState(false);
 
     useEffect(() => {
-        // Load the stored profile image from localStorage
         const storedImage = localStorage.getItem("profileImage");
         if (storedImage) {
             setProfileImage(storedImage);
@@ -32,25 +31,29 @@ const Navbar = () => {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                localStorage.setItem("profileImage", reader.result); // Save to localStorage
+                localStorage.setItem("profileImage", reader.result);
                 setProfileImage(reader.result);
-                setDropdownOpen(false); // Close dropdown after changing profile
+                setDropdownOpen(false);
             };
             reader.readAsDataURL(file);
         }
     };
 
     const openImageModal = (event) => {
-        event.stopPropagation(); // Prevent dropdown from closing
+        event.stopPropagation();
         setImageModalOpen(true);
-        setDropdownOpen(false); // Close dropdown when opening the modal
+        setDropdownOpen(false);
     };
 
     const closeImageModal = () => {
         setImageModalOpen(false);
     };
 
-    // Close dropdown when clicking outside
+    const navigateToProfile = () => {
+        navigate('/admin/profile');
+        setDropdownOpen(false);
+    };
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (!event.target.closest(".dropdown-menu")) {
@@ -73,7 +76,6 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center mr-6 relative dropdown-menu">
-                {/* Profile Icon */}
                 {profileImage ? (
                     <img
                         src={profileImage}
@@ -89,10 +91,15 @@ const Navbar = () => {
                     />
                 )}
 
-                {/* Dropdown Menu */}
                 {dropdownOpen && (
                     <div className="absolute right-0 mt-28 w-48 bg-white border border-[#ddd] rounded-lg shadow-lg">
                         <ul>
+                            <li
+                                onClick={navigateToProfile}
+                                className="text-sm text-[#4B0082] px-4 py-2 cursor-pointer hover:bg-gray-100"
+                            >
+                                View Profile
+                            </li>
                             {profileImage && (
                                 <li
                                     onClick={openImageModal}
@@ -124,15 +131,14 @@ const Navbar = () => {
                 )}
             </div>
 
-            {/* Profile Image Modal */}
             {imageModalOpen && (
                 <div
                     className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20"
-                    onClick={closeImageModal} // Close modal when clicking outside
+                    onClick={closeImageModal}
                 >
                     <div
                         className="bg-white p-4 rounded-lg shadow-lg relative modal-content"
-                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <button
                             className="absolute top-2 right-2 text-gray-600 text-xl"
