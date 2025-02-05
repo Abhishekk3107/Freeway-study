@@ -15,6 +15,7 @@ const Admin = lazy(() => import("./pages/Admin"));
 const SemesterSelection = lazy(() => import("./pages/SemesterSelection"));
 const SubjectSelection = lazy(() => import("./pages/SubjectSelection"));
 const PDFViewer = lazy(() => import("./pages/PDFViewer"));
+// const Profile = lazy(() => import("./AdminPanel/Sections/Profile"));
 
 function App() {
   const { adminUser } = useContext(AdminAuthContext);
@@ -68,7 +69,7 @@ function App() {
         {/* Admin Panel with Authentication Check */}
         <Route path="admin">
           <Route path="dashboard" element={adminUser ? <Main /> : <Navigate to="/admin/login" />} />
-          <Route path="profile" element={adminUser ? <>Admin Profile</> : <Navigate to="/admin/login" />} />
+          {/* <Route path="profile" element={adminUser ? <Profile/> : <Navigate to="/admin/login" />} /> */}
           <Route path="login" element={<Admin />} />
         </Route>
 

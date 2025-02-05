@@ -57,16 +57,16 @@ function NewsPopup({ news, onClose }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl shadow-lg max-w-2xl w-full p-6 relative">
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-[#4B0082]">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-[#5A2175]">
           <X size={20} />
         </button>
         <div className="mb-4">
           <img src={news.image} alt={news.title} className="w-full h-48 object-cover rounded-lg mb-4" />
           <div className="flex items-center gap-2 mb-2">
-            <Tag size={16} className="text-[#4B0082]" />
-            <span className="text-[#4B0082] font-semibold">{news.category}</span>
+            <Tag size={16} className="text-[#5A2175]" />
+            <span className="text-[#5A2175] font-semibold">{news.category}</span>
           </div>
-          <h3 className="text-[#4B0082] font-bold text-2xl mb-2">{news.title}</h3>
+          <h3 className="text-[#5A2175] font-bold text-2xl mb-2">{news.title}</h3>
           <div className="flex items-center gap-1 text-gray-600 mb-4">
             <Clock size={16} />
             <span>{news.timestamp}</span>
@@ -106,9 +106,9 @@ function LatestNews() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#4B0082] text-white min-h-screen py-10 px-4">
+    <div className="flex flex-col items-center bg-[#5A2175] text-white min-h-screen py-10 px-4">
       {/* Admin News Creation Form */}
-      <div className="w-full max-w-4xl bg-[#4B0082] p-5 rounded-xl shadow-md mb-8">
+      <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md mb-8">
         <h2 className="text-2xl font-bold flex items-center space-x-2">
           <Plus size={20} />
           <span>Add News</span>
@@ -144,7 +144,7 @@ function LatestNews() {
           />
           <button
             onClick={handleAddNews}
-            className="w-full bg-[#4B0082] hover:bg-[#3A006B] text-white py-2 px-4 rounded-lg"
+            className="w-full bg-[#38124b] hover:bg-[#371746] text-white py-2 px-4 rounded-lg"
           >
             Add News
           </button>
@@ -152,7 +152,7 @@ function LatestNews() {
       </div>
 
       {/* News Header */}
-      <div className="w-full max-w-4xl bg-[#4B0082] p-5 rounded-xl shadow-md">
+      <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md">
         <h2 className="text-2xl font-bold flex items-center space-x-2">
           <Newspaper className="mr-2" />
           <span>Latest News</span>
@@ -171,16 +171,16 @@ function LatestNews() {
               <img src={news.image} alt={news.title} className="w-full h-48 object-cover" />
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <Tag size={16} className="text-[#4B0082]" />
-                  <span className="text-[#4B0082] font-semibold">{news.category}</span>
+                  <Tag size={16} className="text-[#5A2175]" />
+                  <span className="text-[#5A2175] font-semibold">{news.category}</span>
                 </div>
-                <h3 className="text-[#4B0082] font-bold text-lg mb-2 line-clamp-2">{news.title}</h3>
+                <h3 className="text-[#5A2175] font-bold text-lg mb-2 line-clamp-2">{news.title}</h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1 text-gray-600">
                     <Clock size={16} />
                     <span>{news.timestamp}</span>
                   </div>
-                  <button className="text-[#4B0082] hover:text-[#3A006B] transition-colors" aria-label="Read more">
+                  <button className="text-[#5A2175] hover:text-[#3A006B] transition-colors" aria-label="Read more">
                     <ExternalLink size={20} />
                   </button>
                 </div>

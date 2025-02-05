@@ -74,7 +74,7 @@ function NotificationPopup({ notification, onClose }) {
       <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-[#4B0082]"
+          className="absolute top-4 right-4 text-gray-500 hover:text-[#5A2175]"
         >
           <X size={20} />
         </button>
@@ -88,7 +88,7 @@ function NotificationPopup({ notification, onClose }) {
             />
           </div>
           <div>
-            <h3 className="text-[#4B0082] font-bold text-xl">
+            <h3 className="text-[#5A2175] font-bold text-xl">
               {notification.name}
             </h3>
             <div className="flex items-center gap-1 text-gray-600 font-semibold">
@@ -104,7 +104,7 @@ function NotificationPopup({ notification, onClose }) {
         </div>
         
         <button 
-          className="w-full bg-[#4B0082] hover:bg-[#3A006B] text-white py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2"
+          className="w-full bg-[#5A2175] hover:bg-[#3A006B] text-white py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2"
         >
           <Mail size={20} />
           Send Message
@@ -120,12 +120,12 @@ function ShareResourcesPopup({ onClose }) {
       <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-[#4B0082]"
+          className="absolute top-4 right-4 text-gray-500 hover:text-[#5A2175]"
         >
           <X size={20} />
         </button>
         
-        <h3 className="text-[#4B0082] font-bold text-xl mb-4 flex items-center gap-2">
+        <h3 className="text-[#5A2175] font-bold text-xl mb-4 flex items-center gap-2">
           <Share2 size={24} />
           Share Your Resources
         </h3>
@@ -135,7 +135,7 @@ function ShareResourcesPopup({ onClose }) {
             <label className="block text-gray-700 font-semibold mb-2">Resource Title</label>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#4B0082]"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5A2175]"
               placeholder="Enter resource title"
             />
           </div>
@@ -143,7 +143,7 @@ function ShareResourcesPopup({ onClose }) {
           <div>
             <label className="block text-gray-700 font-semibold mb-2">Description</label>
             <textarea
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#4B0082] h-32"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5A2175] h-32"
               placeholder="Describe your resource"
             ></textarea>
           </div>
@@ -153,7 +153,7 @@ function ShareResourcesPopup({ onClose }) {
             <p className="text-gray-600">Drag and drop your files here or click to browse</p>
           </div>
           
-          <button className="w-full bg-[#4B0082] hover:bg-[#3A006B] text-white py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2">
+          <button className="w-full bg-[#5A2175] hover:bg-[#3A006B] text-white py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2">
             <Send size={20} />
             Share Resource
           </button>
@@ -169,12 +169,12 @@ function ContactUsPopup({ onClose }) {
       <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-[#4B0082]"
+          className="absolute top-4 right-4 text-gray-500 hover:text-[#5A2175]"
         >
           <X size={20} />
         </button>
         
-        <h3 className="text-[#4B0082] font-bold text-xl mb-4 flex items-center gap-2">
+        <h3 className="text-[#5A2175] font-bold text-xl mb-4 flex items-center gap-2">
           <MessageSquare size={24} />
           Contact Us
         </h3>
@@ -184,7 +184,7 @@ function ContactUsPopup({ onClose }) {
             <label className="block text-gray-700 font-semibold mb-2">Your Name</label>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#4B0082]"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#5A2175]"
               placeholder="Enter your name"
             />
           </div>
@@ -222,9 +222,9 @@ function Notification() {
   const [showContactUs, setShowContactUs] = useState(false);
 
   return (
-    <div className="flex flex-col items-center bg-[#4B0082] text-white min-h-screen py-10 px-4">
+    <div className="flex flex-col items-center bg-[#5A2175] text-white min-h-screen py-10 px-4">
       {/* Notification Header */}
-      <div className="w-full max-w-4xl bg-[#4B0082] p-5 rounded-xl shadow-md">
+      <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md">
         <h2 className="text-2xl font-bold flex items-center space-x-2">
           <Bell className="mr-2" />
           <span>Notification</span>
@@ -235,14 +235,14 @@ function Notification() {
       <div className="w-full max-w-4xl mt-4 flex gap-4">
         <button
           onClick={() => setShowShareResources(true)}
-          className="flex-1 bg-white text-[#4B0082] py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:bg-gray-100"
+          className="flex-1 bg-white text-[#5A2175] py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:bg-gray-100"
         >
           <Share2 size={20} />
           Share Resources
         </button>
         <button
           onClick={() => setShowContactUs(true)}
-          className="flex-1 bg-white text-[#4B0082] py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:bg-gray-100"
+          className="flex-1 bg-white text-[#5A2175] py-2 px-4 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:bg-gray-100"
         >
           <Phone size={20} />
           Contact Us
@@ -267,7 +267,7 @@ function Notification() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-[#4B0082] font-bold text-lg">
+                  <h3 className="text-[#5A2175] font-bold text-lg">
                     {notification.name}
                   </h3>
                   <div className="flex items-center gap-1 text-gray-600 font-semibold">
@@ -278,7 +278,7 @@ function Notification() {
               </div>
               
               <button 
-                className="p-2.5 text-[#4B0082] hover:bg-[#4B0082] hover:text-white rounded-lg transition-all font-bold"
+                className="p-2.5 text-[#5A2175] hover:bg-[#4B0082] hover:text-white rounded-lg transition-all font-bold"
                 aria-label="Send message"
                 onClick={(e) => {
                   e.stopPropagation();

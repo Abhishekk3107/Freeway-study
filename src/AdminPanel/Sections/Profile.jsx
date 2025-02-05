@@ -129,9 +129,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#4B0082] text-white min-h-screen py-10">
+    <div className="flex flex-col items-center bg-[#5A2175] text-white min-h-screen py-10">
       {/* Profile Header */}
-      <div className="w-full max-w-4xl bg-[#4B0082] p-5 rounded-xl shadow-md">
+      <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md">
         <h2 className="text-2xl font-bold flex items-center space-x-2">
           <User className="w-6 h-6" />
           <span>Profile</span>
@@ -151,7 +151,7 @@ const Profile = () => {
                 type="text"
                 value={editedFullName}
                 onChange={handleNameChange}
-                className="border p-1 rounded text-[#4B0082] font-bold inline-block w-auto"
+                className="border p-1 rounded text-[#5A2175] font-bold inline-block w-auto"
               />
             ) : (
               <span className="font-semibold">{profileData.fullName}</span>
@@ -170,7 +170,7 @@ const Profile = () => {
                 type="text"
                 value={editedPhone}
                 onChange={handlePhoneChange}
-                className="border p-1 rounded text-[#4B0082] font-bold inline-block w-auto"
+                className="border p-1 rounded text-[#5A2175] font-bold inline-block w-auto"
               />
             ) : (
               <span className="font-semibold">{profileData.phone}</span>
@@ -187,7 +187,7 @@ const Profile = () => {
             {hasChanges ? (
               <button
                 onClick={handleSave}
-                className="bg-[#4B0082] hover:bg-[#3A006B] text-white px-4 py-2 rounded transition-all font-bold"
+                className="bg-[#5A2175] hover:bg-[#3A006B] text-white px-4 py-2 rounded transition-all font-bold"
               >
                 Save
               </button>
@@ -223,7 +223,7 @@ const Profile = () => {
             </button>
           </div>
           <p className="mt-3 font-bold">{profileData.fullName}</p>
-          <p className="text-sm font-bold text-[#4B0082]">ID No. {profileData.id}</p>
+          <p className="text-sm font-bold text-[#5A2175]">ID No. {profileData.id}</p>
 
           {/* Profile Picture Options */}
           {showOptions && (
@@ -246,7 +246,7 @@ const Profile = () => {
           {["PYQ's", "Playlist", "Notes"].map((resource, index) => (
             <div key={index} className="bg-gray-200 p-3 rounded flex justify-between font-bold">
               <span>{resource}</span>
-              <span className="text-[#4B0082]">BCA</span>
+              <span className="text-[#5A2175]">BCA</span>
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdminAuthContext } from "../../context/AdminAuthContext";
 
-const Navbar = () => {
+const Navbar = ({setActiveComponent}) => {
     const navigate = useNavigate();
     const { handleLogout } = useContext(AdminAuthContext);
 
@@ -95,7 +95,7 @@ const Navbar = () => {
                     <div className="absolute right-0 mt-28 w-48 bg-white border border-[#ddd] rounded-lg shadow-lg">
                         <ul>
                             <li
-                                onClick={navigateToProfile}
+                                onClick={()=>setActiveComponent('Profile')}
                                 className="text-sm text-[#4B0082] px-4 py-2 cursor-pointer hover:bg-gray-100"
                             >
                                 View Profile

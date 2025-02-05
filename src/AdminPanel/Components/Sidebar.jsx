@@ -7,9 +7,6 @@ const sidebar = [
   { icon: "fa-regular fa-message", heading: "Feedbacks" },
   { icon: "fa-regular fa-newspaper", heading: "Latest News" },
   { icon: "fa-solid fa-comment-dots", heading: "Notification" },
-  { icon: "fas fa-user-circle", heading: "Profile" },
-
-
 ];
 
 const Sidebar = ({ sidebarRef, handleScroll, activeComponent, setActiveComponent }) => {

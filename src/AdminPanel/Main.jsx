@@ -28,7 +28,6 @@ function Main() {
             case "Profile":
                 return <Profile setActiveComponent={setActiveComponent} />;
     
-
             default:
                 return <></>;
         }
@@ -47,7 +46,7 @@ function Main() {
 
                 {/* Main Content */}
                 <div className="flex-1 bg-gray-200 overflow-y-auto">
-                    <Navbar />
+                    <Navbar setActiveComponent={setActiveComponent} />
                     <div className="pt-8 bg-gray-200 min-h-screen">
                         {renderComponent()}
                     </div>
