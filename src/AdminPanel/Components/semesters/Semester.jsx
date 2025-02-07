@@ -72,7 +72,7 @@ function Semester({ setActiveComponent, setSemesterData }) {
       </div>
 
       {/* Courses Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
             <tr className=" border-b bg-gray-100 border-gray-200 text-center h-16">

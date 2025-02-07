@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import useSubject from "../../../hooks/useSubject";
 
-function Subject() {
+function Subject({setActiveComponent}) {
   const [currentPage, setCurrentPage] = useState(1);
   const { subjects, pagination, loading, fetchSubjects, deleteSubject } = useSubject(8, currentPage);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -46,6 +46,7 @@ const handleSelectAll = () => {
     <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
   </div>);
 
+console.log(subjects)
 
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
@@ -62,7 +63,7 @@ const handleSelectAll = () => {
             <MdDelete size={26} className="cursor-pointer" onClick={handleDeleteSelected} />
           )}
           <button
-            onClick={() => setActiveComponent("Add subject")}
+            onClick={() => setActiveComponent("Add Subject")}
             className="bg-[#4B0082] text-nowrap font-semibold border shadow-md text-white py-2 px-4 rounded-md"
           >
             Create
@@ -71,7 +72,7 @@ const handleSelectAll = () => {
       </div>
 
       {/* Courses Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto scrollbar-hidden">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
             <tr className=" border-b bg-gray-100 border-gray-200 text-center h-16">
@@ -83,9 +84,15 @@ const handleSelectAll = () => {
                   onChange={handleSelectAll}
                 />
               </th>
-              <th className="py-3 px-4 font-medium text-sm text-gray-500">Name</th>
-              <th className="py-3 px-4 font-medium text-sm text-gray-500">Duration</th>
-              <th className="py-3 px-4 font-medium text-sm text-gray-500">Syllabus</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">subject</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">semester</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">units</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">hand notes</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">book notes</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">pyq</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">pyq solution</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">video links</th>
+              <th className="py-3 px-4 font-medium text-sm text-gray-500">extra notes</th>
               <th className="py-3 px-4 font-medium text-sm text-gray-500">Action</th>
             </tr>
           </thead>
@@ -102,8 +109,20 @@ const handleSelectAll = () => {
                     />
                   </td>
                   <td className="p-2 font-medium text-sm text-gray-600">{item.name}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.duration}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.syllabus}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.semester.name}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.unitsname.map((unit,index)=>(
+                    <div key={index}>{`${index+1}- ${unit}`}</div>
+                  ))}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.subjectnotes}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.booknotes}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyq}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyqsolution}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.video.map((i,index)=>(
+                    <div key={index}>{i}</div>
+                  ))}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.extranotes.map((ext,index)=>(
+                    <div key={index}>{ext}</div>
+                  ))}</td>
                   <td className="p-2 relative">
                     <FiMoreVertical
                       className="cursor-pointer"
@@ -126,7 +145,7 @@ const handleSelectAll = () => {
                         <button
                           className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
                           onClick={() => {
-                            deleteCourse(item._id);
+                            deleteSubject(item._id);
                             setActionMenu(null);
                           }}
                         >
@@ -139,7 +158,7 @@ const handleSelectAll = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-500">
+                <td colSpan={11} className="text-center py-4 text-gray-500">
                   No subject available
                 </td>
               </tr>

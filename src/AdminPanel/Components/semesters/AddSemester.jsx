@@ -52,7 +52,7 @@ function AddSemester({ setActiveComponent }) {
     };
 
     const addSubjectField = (e) => {
-        setFormData({ ...formData, subjectsname: [ "" , ...formData.subjectsname] });
+        setFormData({ ...formData, subjectsname: ["", ...formData.subjectsname] });
     };
 
     const removeSubjectField = (index) => {
@@ -68,7 +68,7 @@ function AddSemester({ setActiveComponent }) {
         }
 
         const filteredSubjects = formData.subjectsname.filter(subject => subject.trim() !== "");
-    
+
         if (filteredSubjects.length === 0) {
             alert("Please enter at least one valid subject name.");
             return;
@@ -100,7 +100,7 @@ function AddSemester({ setActiveComponent }) {
         <div className="rounded-xl p-4 bg-gray-50 min-h-screen">
             <h2 className="text-2xl font-semibold mb-4 text-[#4B0082]">Add New Semester</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Select Course */}
+
                 <div>
                     <label className="block text-gray-600">Select Course</label>
                     <select
@@ -117,7 +117,7 @@ function AddSemester({ setActiveComponent }) {
                     </select>
                 </div>
 
-                {/* Select Semester */}
+
                 <div>
                     <label className="block text-gray-600">Select Semester</label>
                     <select
@@ -135,7 +135,7 @@ function AddSemester({ setActiveComponent }) {
                     </select>
                 </div>
 
-                {/* Subjects Name */}
+
                 <div>
                     <label className="block text-gray-600">Subjects Name</label>
                     {formData.subjectsname.map((subject, index) => (
@@ -145,8 +145,19 @@ function AddSemester({ setActiveComponent }) {
                                 value={subject}
                                 onChange={(e) => handleSubjectChange(index, e.target.value)}
                                 className="w-full px-4 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            
+
                             />
+                            {
+                                index == 0 && (
+                                    <button
+                                        type="button"
+                                        onClick={addSubjectField}
+                                        className="text-green-500 px-3 py-2 border border-green-500 rounded-md hover:bg-green-100"
+                                    >
+                                        Add
+                                    </button>
+                                )
+                            }
                             {index > 0 && (
                                 <button
                                     type="button"
@@ -158,16 +169,10 @@ function AddSemester({ setActiveComponent }) {
                             )}
                         </div>
                     ))}
-                    <button
-                        type="button"
-                        onClick={addSubjectField}
-                        className="text-green-500 mt-2 px-3 py-2 border border-green-500 rounded-md hover:bg-green-100"
-                    >
-                        Add Subject
-                    </button>
+
                 </div>
 
-                {/* Syllabus */}
+
                 <div>
                     <label className="block text-gray-600">semester Syllabus</label>
                     <input
@@ -189,7 +194,6 @@ function AddSemester({ setActiveComponent }) {
                     </div>
                 )}
 
-                {/* Submit and Cancel Buttons */}
                 <div className="flex gap-2">
                     <button
                         type="submit"
@@ -207,7 +211,6 @@ function AddSemester({ setActiveComponent }) {
                     </button>
                 </div>
 
-                {/* Error Message */}
                 {error && <p className="text-red-500 mt-2">{error}</p>}
             </form>
         </div>
