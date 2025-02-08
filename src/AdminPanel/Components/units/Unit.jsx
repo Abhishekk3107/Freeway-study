@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import useUnit from "../../../hooks/useUnit";
 
-function Unit({ setActiveComponent }) {
+function Unit({ setActiveComponent  , setUnitData}) {
   const [currentPage, setCurrentPage] = useState(1);
   const { units, pagination, loading, fetchUnits, deleteUnit } = useUnit(8, currentPage);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -37,8 +37,10 @@ function Unit({ setActiveComponent }) {
     fetchUnits(currentPage);
   };
 
-  if (loading) return <div className="w-full flex justify-center items-center text-gray-400">Loading...</div>;
-console.log(units)
+  if (loading) return (<div className="w-full flex justify-center items-center text-gray-400">
+    <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
+  </div>);
+  
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
       <div className="flex px-4 space-x-4 mb-4 items-center">
@@ -96,7 +98,11 @@ console.log(units)
                     <FiMoreVertical className="cursor-pointer" onClick={() => setActionMenu(actionMenu === index ? null : index)} />
                     {actionMenu === index && (
                       <div className="absolute right-0 top-10 bg-white shadow-lg border rounded-md w-32">
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() => setActiveComponent("Update Unit")}>
+                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={() =>{ 
+                          setUnitData(unit)
+                          setActiveComponent("Update Unit")
+                          setActionMenu(null)
+                          }}>
                           Edit
                         </button>
                         <button className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100" onClick={() => deleteUnit(unit._id)}>

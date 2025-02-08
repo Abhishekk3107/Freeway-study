@@ -114,7 +114,7 @@ function AddSubject({ setActiveComponent }) {
       const filtervideo = formData.video.filter((video)=> video.trim() !== "");
 
       if(filterunits.length == 0 || filtervideo.length == 0){
-        alert("Please enter at least one valid subject name.");
+        alert("Please enter at least one valid unit Name or video link.");
           return;
       }
 

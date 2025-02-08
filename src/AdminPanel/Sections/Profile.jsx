@@ -17,9 +17,6 @@ const Profile = () => {
   const [hasChanges, setHasChanges] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
 
-  useEffect(() => {
-    console.log("Profile Component Loaded");
-  }, []);
 
   const handleNameChange = (e) => {
     setEditedFullName(e.target.value);
@@ -129,7 +126,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#5A2175] text-white min-h-screen py-10">
+    <div className="flex flex-col items-center bg-[#5A2175] text-white min-h-screen py-10 px-2">
       {/* Profile Header */}
       <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md">
         <h2 className="text-2xl font-bold flex items-center space-x-2">
@@ -139,7 +136,7 @@ const Profile = () => {
       </div>
 
       {/* Profile Content */}
-      <div className="w-full max-w-4xl bg-white text-black mt-6 p-6 rounded-xl shadow-lg grid md:grid-cols-3 gap-6">
+      <div className="w-full max-w-4xl bg-white  text-black mt-6 p-6 rounded-xl shadow-lg grid md:grid-cols-3 gap-6">
         {/* Personal Info */}
         <div className="col-span-2 bg-gray-100 p-5 rounded-lg">
           <h3 className="text-lg font-bold mb-4">Personal Information</h3>

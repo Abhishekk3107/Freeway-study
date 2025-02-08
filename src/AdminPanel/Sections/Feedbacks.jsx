@@ -10,7 +10,7 @@ function Feedbacks() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-[#5A2175] text-white py-10">
+    <div className="w-full min-h-screen flex flex-col items-center bg-[#5A2175] text-white py-10 px-2">
       <div className="w-full max-w-4xl bg-[#5A2175] p-5 rounded-xl shadow-md">
         <h1 className="text-2xl font-bold flex items-center space-x-2">
           <i className="fa-regular fa-message"></i>

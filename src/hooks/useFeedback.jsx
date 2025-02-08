@@ -17,12 +17,10 @@ const useFeedback = () => {
 
             // Check response and update state
             if (res.status === 200) {
-                setApprovedFeedback(res.data);  // assuming res.data is the feedback
-                console.log('Approved Feedback:', res.data);
+                setApprovedFeedback(res.data);  
             }
             if (res2.status === 200) {
-                setAllFeedback(res2.data);  // assuming res2.data is the feedback
-                console.log('All Feedback:', res2.data);
+                setAllFeedback(res2.data);  
             }
         } catch (error) {
             console.error("Error fetching feedback:", error);

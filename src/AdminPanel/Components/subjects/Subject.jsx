@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import useSubject from "../../../hooks/useSubject";
 
-function Subject({setActiveComponent}) {
+function Subject({setActiveComponent , setSubjectData}) {
   const [currentPage, setCurrentPage] = useState(1);
   const { subjects, pagination, loading, fetchSubjects, deleteSubject } = useSubject(8, currentPage);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -46,7 +46,6 @@ const handleSelectAll = () => {
     <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
   </div>);
 
-console.log(subjects)
 
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
@@ -108,21 +107,21 @@ console.log(subjects)
                       onChange={() => handleSelectItem(index)}
                     />
                   </td>
-                  <td className="p-2 font-medium text-sm text-gray-600">{item.name}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.semester.name}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.unitsname.map((unit,index)=>(
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.name || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.semester.name || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.unitsname.length > 0 ? item.unitsname.map((unit,index)=>(
                     <div key={index}>{`${index+1}- ${unit}`}</div>
-                  ))}</td>
-                  <td className="p-2 font-medium text-sm text-gray-600">{item.subjectnotes}</td>
-                  <td className="p-2 font-medium text-sm text-gray-600">{item.booknotes}</td>
-                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyq}</td>
-                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyqsolution}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.video.map((i,index)=>(
+                  )) : "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.subjectnotes || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.booknotes || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyq || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-600">{item.pyqsolution || "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.video.length > 0 ? item.video.map((i,index)=>(
                     <div key={index}>{i}</div>
-                  ))}</td>
-                  <td className="p-2 font-medium text-sm text-gray-400">{item.extranotes.map((ext,index)=>(
+                  )) : "N/A"}</td>
+                  <td className="p-2 font-medium text-sm text-gray-400">{item.extranotes.length > 0 ? item.extranotes.map((ext,index)=>(
                     <div key={index}>{ext}</div>
-                  ))}</td>
+                  )) : "N/A"}</td>
                   <td className="p-2 relative">
                     <FiMoreVertical
                       className="cursor-pointer"
@@ -135,8 +134,8 @@ console.log(subjects)
                         <button
                           className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={() => {
-                            setCourseData(item);
-                            setActiveComponent("Update Course");
+                            setSubjectData(item);
+                            setActiveComponent("Update Subject");
                             setActionMenu(null);
                           }}
                         >

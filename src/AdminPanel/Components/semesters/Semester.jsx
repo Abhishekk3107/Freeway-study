@@ -46,8 +46,6 @@ function Semester({ setActiveComponent, setSemesterData }) {
     <div className="animate-spin rounded-full border-t-4 border-b-4 border-gray-600 w-12 h-12"></div>
   </div>);
 
-  console.log(semesters)
-
   return (
     <div className="py-4 bg-white rounded-xl lightdropshadowbox">
       {/* Header Section */}
@@ -55,7 +53,7 @@ function Semester({ setActiveComponent, setSemesterData }) {
         <div className="flex space-x-3 items-center">
           <h2 className="font-bold text-lg">Semesters</h2>
           <span className="bg-purple-200 px-2 text-xs rounded-full">
-            {pagination ? pagination.totalItems : 0} semesters
+            {pagination ? pagination.totalPages : 0} semesters
           </span>
         </div>
         <div className="flex justify-end flex-1 items-center space-x-4">
